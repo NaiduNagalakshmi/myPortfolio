@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<form id="loginForm">
+  <div class="container">
+        <div class="heading">
+            <h2>Login page</h2>
+            <p>Start your journey!</p>
+        </div>
+        <div class="details">
+            <label for="user name">Enter your Name</label><br>
+            <input type="text"  id="name" name="name" placeholder="Enter user name" class="fname"required><br><br>
+            <label for="password">Password</label><br>
+            <input type="password"  id="password" placeholder="Enter your password" class="password" required><br><br>
+            <a href=" " class="forgot-password">Forgot your password?</a><br>
+            
+            <button type="submit" id="loginbtn" required>Login</button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // stop default submission
+
+      const name = form.name.value.trim();
+      const pwd = form.password.value;
+
+      // 1. Ensure fields aren't empty
+      if (!name || !pwd) {
+        alert("Please fill in both name and password!");
+        return;
+      }
+
+      // 2. Password rules
+      const hasMinimumLength = pwd.length >= 8;
+      const hasUppercase = /[A-Z]/.test(pwd);
+      const hasLowercase = /[a-z]/.test(pwd);
+      const hasNumber = /\d/.test(pwd);
+      const hasSpecialCharacter = /[!@#$%^&*]/.test(pwd);
+
+      if (!(hasMinimumLength && hasUppercase && hasLowercase && hasNumber && hasSpecialCharacter)) {
+        alert("Invalid password: must be 8+ chars, uppercase, lowercase, digit, special");
+        return;
+      }
+
+      alert("Your login is successfully completed!");
+      window.location.href = "https://www.google.com";
+    });
+  });
+</script>
+</div>
+</html>
